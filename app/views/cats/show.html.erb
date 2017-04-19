@@ -1,0 +1,58 @@
+<body style="background-color:powderblue;">
+  <h1 align="center"><%= @cat.name %></h1>
+
+  <figure align="center">
+    <img src="https://i.ytimg.com/vi/2fb-g_V-UT4/hqdefault.jpg" alt="swagger">
+  </figure>
+  <h2 align="center">About the Cat</h2>
+
+  <table align="center">
+    <thead>
+      <tr>
+      <td><b>Attribute</b></td>
+      <td><b>Value</b></td>
+      </tr>
+    </thead>
+    <tr>
+      <td>Age</td>
+      <td><%= time_ago_in_words(@cat.birth_date) %></td>
+    </tr>
+    <tr>
+      <td>birth date</td>
+      <td><%= @cat.birth_date %></td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td><%= @cat.color %></td>
+    </tr>
+    <tr>
+      <td>sex</td>
+      <td><%= @cat.sex %></td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td><%= @cat.description %></td>
+    </tr>
+  </table>
+
+  <h2 align="center">Rental Requests</h2>
+  <table align="center">
+    <thead>
+      <tr>
+        <td><b>User</b></td>
+        <td><b>Start Date</b></td>
+        <td><b>End Date</b></td>
+        <td><b>Status</b></td>
+      </tr>
+    </thead>
+      <% rentals = @cat.cat_rental_requests %>
+      <% rentals.each do |rental| %>
+        <tr>
+          <td>User</td>
+          <td><%= rental.start_date %></td>
+          <td><%= rental.end_date %></td>
+          <td><%= rental.status %></td>
+        </tr>
+      <% end %>
+  </table>
+</body>

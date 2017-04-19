@@ -1,0 +1,8 @@
+<h1 align="center">All da catz!</h1>
+
+<ul align="center">
+  <% @cats.each do |cat| %>
+    <a href="<%= cat_url(cat) %>"><%= cat.name %><br>
+    <img src="https://i.ytimg.com/vi/2fb-g_V-UT4/hqdefault.jpg" alt=""></a><br>
+  <% end %>
+</ul>

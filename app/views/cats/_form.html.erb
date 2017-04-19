@@ -1,0 +1,45 @@
+<body style="background-color:powderblue;">
+<% if action == :edit %>
+  <% action_url = cat_url(cat) %>
+<% else %>
+  <% action_url = cats_url %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <label for="name">Name</label>
+  <input id="name" type="text" name="cat[name]" value="<%= cat.name %>">
+
+  <input id="sex_female" type="radio" name="cat[sex]" value="F"
+  <% if action == :edit %>
+    <%=(cat.sex == "F" ? "checked" : "") %>
+  <% end %>>
+  <label for="sex_female">Female</label>
+
+  <input id="sex_male" type="radio" name="cat[sex]" value="M"
+  <% if action == :edit %>
+    <%=(cat.sex == "M" ? "checked" : "") %>
+  <% end %>>
+  <label for="sex_male">Male</label>
+
+  <label for="color">Color</label>
+  <select id="color" name="cat[color]">
+    <option disabled <%= cat.color ? "" : "selected" %>>--select color--</option>
+    <option value="purple" <%= cat.color == "purple" ? "selected" : "" %>>Purple</option>
+    <option value="green" <%= cat.color == "green" ? "selected" : "" %>>Green</option>
+    <option value="orange" <%= cat.color == "orange" ? "selected" : "" %>>Orange</option>
+    <option value="yellow" <%= cat.color == "yellow" ? "selected" : "" %>>Yellow</option>
+  </select>
+
+  <label for="birth_date">Birth date</label>
+  <input id="birth_date" type="date" name="cat[birth_date]" value="<%= cat.birth_date %>">
+
+  <label for="description">Description</label>
+  <input id="description" type="textarea" name="cat[description]" value="<%=cat.description%>">
+
+  <input type="submit" value="<%=action == :edit ? 'update cat' : 'add cat'%>">
+</form>
+</body>
